@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -e
 
 # Install command-line tools using Homebrew.
 
@@ -28,7 +28,7 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Check for Homebrew, and then install it
 if test ! "$(which brew)"; then
   echo "Installing homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   echo "Homebrew installed successfully"
 else
   echo "Homebrew already installed!"
