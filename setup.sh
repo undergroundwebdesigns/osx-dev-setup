@@ -28,7 +28,7 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Check for Homebrew, and then install it
 if test ! "$(which brew)"; then
   echo "Installing homebrew..."
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  NONINTERACTIVE=1 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   echo "Homebrew installed successfully"
 else
   echo "Homebrew already installed!"
@@ -48,7 +48,7 @@ brew upgrade
 
 # Install iTerm2
 echo "Installing iTerm2..."
-brew cask install iterm2
+brew install --cask iterm2
 
 # Update the Terminal
 # Install oh-my-zsh
@@ -84,12 +84,12 @@ brew install speedtest_cli
 brew install vim
 
 # Core casks
-brew cask install --appdir="/Applications" alfred
+brew install --appdir="/Applications" --cask alfred
 
 # Misc casks
-brew cask install --appdir="/Applications" firefox
-brew cask install --appdir="/Applications" 1password
-brew cask install --appdir="/Applications" caffeine
+brew install --appdir="/Applications" --cask firefox
+brew install --appdir="/Applications" --cask 1password
+brew install --appdir="/Applications" --cask caffeine
 
 # Remove outdated versions from the cellar.
 echo "Running brew cleanup..."
