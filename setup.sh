@@ -66,7 +66,7 @@ echo "Installing ASDF, Curl, Coreutilities, and Git..."
 brew install asdf coreutils git curl
 
 # Configure zsh plugins:
-sed -i '/^plugins=/{
+sed -i -e '/^plugins=/{
 h
 s/=.*/=(asdf git)/
 }
@@ -78,14 +78,16 @@ H
 }
 x
 }' ~/.zshrc
-# Reload zsh:
-exec zsh
 
 # Install Powerline fonts
-echo "Installing Powerline fonts..."
-git clone https://github.com/powerline/fonts.git
-cd fonts || exit
-sh -c ./install.sh
+if [[ $(system_profiler SPFontsDataType | grep Powerline) ]]; then
+  echo "Installing Powerline fonts..."
+  git clone https://github.com/powerline/fonts.git
+  cd fonts || exit
+  sh -c ./install.sh
+  cd ../
+  rm -rf fonts
+fi
 
 # Install a network scanning tool:
 brew install nmap
@@ -106,3 +108,6 @@ brew install --appdir="/Applications" --cask caffeine
 echo "Running brew cleanup..."
 brew cleanup
 echo "You're done!"
+
+# Reload zsh:
+exec zsh
