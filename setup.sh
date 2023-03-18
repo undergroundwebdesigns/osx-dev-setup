@@ -52,7 +52,7 @@ brew install --cask iterm2
 
 # Update the Terminal
 # Install oh-my-zsh
-if test ! "$(which omz)"; then
+if [[ -z "${ZSH}" ]]; then
   echo "Installing oh-my-zsh..."
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   echo "Need to logout now to start the new SHELL..."
