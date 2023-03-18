@@ -80,7 +80,7 @@ x
 }' ~/.zshrc
 
 # Install Powerline fonts
-if [[ $(system_profiler SPFontsDataType | grep Powerline) ]]; then
+if [[ ! $(system_profiler SPFontsDataType | grep Powerline) ]]; then
   echo "Installing Powerline fonts..."
   git clone https://github.com/powerline/fonts.git
   cd fonts || exit
