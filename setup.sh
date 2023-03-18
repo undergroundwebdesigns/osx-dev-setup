@@ -66,7 +66,7 @@ echo "Installing ASDF, Curl, Coreutilities, and Git..."
 brew install asdf coreutils git curl
 
 # Configure zsh plugins:
-sed -n -e '/^plugins=/!p' -e '$aplugins=(asdf git)' ~/.zshrc
+sed -n -e '/^plugins=/{h;s/=.*/=(asdf git)/};${x;/^$/{s//plugins=(asdf git)/;H};x}' ~/.zshrc
 # Reload zsh:
 exec zsh
 
