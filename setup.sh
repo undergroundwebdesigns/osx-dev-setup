@@ -70,11 +70,11 @@ brew install gnupg2 pinentry-mac
 
 mkdir -p ~/.gnupg
 chown -R $(whoami) ~/.gnupg/
-chmod 600 ~/.gnupg/*
+chmod -R 600 ~/.gnupg/
 chmod 700 ~/.gnupg
 mkdir -p ~/.ssh
+chmod -R 600 ~/.ssh/
 chmod 700 ~/.ssh
-chmod 600 ~/.ssh/*
 
 cat << EOF > ~/.gnupg/gpg-agent.conf
 pinentry-program $(which pinentry-mac)
