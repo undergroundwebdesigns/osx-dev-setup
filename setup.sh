@@ -87,6 +87,7 @@ EOF
 
 # Install Yubikey Manager:
 brew install ykman
+brew tap homebrew/cask-drivers
 brew install --cask yubico-authenticator --appdir="/Applications"
 brew install --cask yubico-yubikey-manager --appdir="/Applications"
 
