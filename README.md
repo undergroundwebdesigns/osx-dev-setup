@@ -4,7 +4,7 @@ This repo contains my personal setup scripts for configuring a new Apple Mac com
 
 ## Usage
 
-```bash
+```console
 foo@bar:~$ curl -o /tmp/setup.sh https://raw.githubusercontent.com/undergroundwebdesigns/osx-dev-setup/main/setup.sh
 foo@bar:~$ chmod +x /tmp/setup.sh
 foo@bar:~$ /tmp/setup.sh
