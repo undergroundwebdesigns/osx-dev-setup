@@ -87,6 +87,8 @@ EOF
 
 # Install Yubikey Manager:
 brew install ykman
+brew install --cask yubico-authenticator --appdir="/Applications"
+brew install --cask yubico-yubikey-manager --appdir="/Applications"
 
 # Configure zsh plugins:
 sed -i -e '/^plugins=/{
@@ -126,6 +128,7 @@ brew install --appdir="/Applications" --cask alfred
 brew install --appdir="/Applications" --cask firefox
 brew install --appdir="/Applications" --cask 1password
 brew install --appdir="/Applications" --cask caffeine
+brew install --appdir="/Applications" --cask docker
 
 # Configure OSX Dock:
 defaults write com.apple.dock "show-recents" 0
