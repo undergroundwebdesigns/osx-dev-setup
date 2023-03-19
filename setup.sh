@@ -65,15 +65,35 @@ fi
 echo "Installing ASDF, Curl, Coreutilities, and Git..."
 brew install asdf coreutils git curl
 
+# Install GPG Agent and configure it as the primary SSH agent:
+brew install gnupg2 pinentry-mac
+
+mkdir -p ~/.gnupg
+chown -R $(whoami) ~/.gnupg/
+chmod 600 ~/.gnupg/*
+chmod 700 ~/.gnupg
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/*
+
+cat << EOF > ~/.gnupg/gpg-agent.conf
+pinentry-program $(which pinentry-mac)
+default-cache-ttl 3600
+default-cache-ttl-ssh 3600
+max-cache-ttl 7200
+max-cache-ttl-ssh 7200
+enable-ssh-support
+EOF
+
 # Configure zsh plugins:
 sed -i -e '/^plugins=/{
 h
-s/=.*/=(asdf git)/
+s/=.*/=(asdf git gpg-agent)/
 }
 ${
 x
 /^$/{
-s//plugins=(asdf git)/
+s//plugins=(asdf git gpg-agent)/
 H
 }
 x
