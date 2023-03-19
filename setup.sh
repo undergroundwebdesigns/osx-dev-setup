@@ -85,6 +85,9 @@ max-cache-ttl-ssh 7200
 enable-ssh-support
 EOF
 
+# Install Yubikey Manager:
+brew install ykman
+
 # Configure zsh plugins:
 sed -i -e '/^plugins=/{
 h
@@ -123,6 +126,14 @@ brew install --appdir="/Applications" --cask alfred
 brew install --appdir="/Applications" --cask firefox
 brew install --appdir="/Applications" --cask 1password
 brew install --appdir="/Applications" --cask caffeine
+
+# Configure OSX Dock:
+defaults write com.apple.dock "show-recents" 0
+defaults write com.apple.dock autohide 1
+defaults write com.apple.dock orientation right
+# Sets persistent-apps to an empty array, removing all the default persistent apps cluttering the dock:
+defaults write com.apple.dock persistent-apps -array
+killall Dock # Force dock to restart so that changes take effect.
 
 # Remove outdated versions from the cellar.
 echo "Running brew cleanup..."
