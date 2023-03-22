@@ -141,6 +141,23 @@ defaults write com.apple.dock orientation right
 defaults write com.apple.dock persistent-apps -array
 killall Dock # Force dock to restart so that changes take effect.
 
+# Setup GPG:
+echo "Downloading GPG public key..."
+curl -o /tmp/public.asc https://raw.githubusercontent.com/undergroundwebdesigns/osx-dev-setup/main/gpg_keys/BA8568CAB0B36E7ABE2D483D859455953DF5A45A.public.keys.asc
+
+echo "Importing GPG public key..."
+gpg --armor --import /tmp/public.asc
+
+read -n 1 -p "Please insert Yubikey and then press 'y' to continue." confirm
+if [ "$confirm" != "y" ]; then exit 1; fi
+
+echo "\n"
+
+gpg --card-status
+
+git config --global user.signingkey BA8568CAB0B36E7ABE2D483D859455953DF5A45A
+git config --global user.gpgsign true
+
 # Remove outdated versions from the cellar.
 echo "Running brew cleanup..."
 brew cleanup
