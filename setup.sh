@@ -62,10 +62,11 @@ else
 fi
 
 # Install Git
-echo "Installing ASDF, Curl, Coreutilities, and Git..."
-brew install asdf coreutils git curl
+echo "Installing ASDF, Curl, Coreutilities, TFEnv, and Git..."
+brew install asdf coreutils git curl tfenv
 
 # Install GPG Agent and configure it as the primary SSH agent:
+echo "Installing GNUPG2..."
 brew install gnupg2 pinentry-mac
 
 mkdir -p ~/.gnupg
@@ -86,6 +87,7 @@ enable-ssh-support
 EOF
 
 # Install Yubikey Manager:
+echo "Installing Yubikey tools..."
 brew install ykman
 brew tap homebrew/cask-drivers
 brew install --cask yubico-authenticator --appdir="/Applications"
@@ -133,7 +135,7 @@ brew install --appdir="/Applications" --cask docker
 
 # Configure OSX Dock:
 defaults write com.apple.dock "show-recents" 0
-defaults write com.apple.dock autohide 1
+defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock orientation right
 # Sets persistent-apps to an empty array, removing all the default persistent apps cluttering the dock:
 defaults write com.apple.dock persistent-apps -array
